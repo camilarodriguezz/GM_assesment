@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
-// import Spinner from 'react-native-loading-spinner-overlay';
+import Spinner from 'react-native-loading-spinner-overlay';
 import { connect } from 'react-redux';
 import styles from './Dasboard.styles';
 import { fetchRecords } from '../../redux/actions';
@@ -9,27 +9,27 @@ const Dashboard = (props) => {
     // console.log('Dashboard props =>', props)
     const [artist, setArtist] = useState('');
     const records = props.records
-    // const [spinner, setSpinner] = useState(false);
+    const [spinner, setSpinner] = useState(false);
 
     const onSearchHandler = () => {
-        // setSpinner(true);
+        setSpinner(true);
         props.onSearch(artist);
     };
 
     useEffect(() => {
-        // records ?
-        //     setTimeout(() => {
-        //         setSpinner(false)
-        //     }, 100) : null
+        records ?
+            setTimeout(() => {
+                setSpinner(false)
+            }, 100) : null
     }, [records])
 
     return (
         <SafeAreaView style={styles.container}>
-            {/* <Spinner
+            <Spinner
                 visible={spinner}
                 textContent={'Loading...'}
                 textStyle={styles.spinnerTextStyle}
-            /> */}
+            />
             <View style={styles.wraper}>
                 <Text style={styles.title}>
                     {artist ? "i" + artist : "iArtist"}
