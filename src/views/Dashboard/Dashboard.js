@@ -21,7 +21,7 @@ const Dashboard = (props) => {
             setTimeout(() => {
                 setSpinner(false)
             }, 100) : null
-    }, [records])
+    }, [records, spinner])
 
     return (
         <SafeAreaView style={styles.container}>
