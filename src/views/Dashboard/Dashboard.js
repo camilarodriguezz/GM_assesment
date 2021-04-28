@@ -6,15 +6,30 @@ import styles from './Dasboard.styles';
 import { fetchRecords } from '../../redux/actions';
 
 const Dashboard = (props) => {
-    // console.log('Dashboard props =>', props)
+    console.log('Dashboard props =>', props)
     const [artist, setArtist] = useState('');
-    const records = props.records
+    const {records} = props
     const [spinner, setSpinner] = useState(false);
 
     const onSearchHandler = () => {
         setSpinner(true);
         props.onSearch(artist);
     };
+
+    // const recordsByDate = (records) => {
+    //     let organizedRecords = [];
+
+    //     for (let i = 0; i < records.length; i++) {
+
+    //     }
+    // }
+
+    // records.sort(function(a,b){
+    //     // Turn your strings into dates, and then subtract them
+    //     // to get a value that is either negative, positive, or zero.
+    //     return new Date(b.releaseDate) - new Date(a.releaseDate);
+    //   });
+    
 
     useEffect(() => {
         records ?
@@ -47,10 +62,12 @@ const Dashboard = (props) => {
                     placeholderTextColor="#fff"
                     onChangeText={text => setArtist(text)}
                     value={artist}
+                    testID="textInput"
                 />
                 <TouchableOpacity
                     onPress={() => onSearchHandler()}
                     style={styles.buttonContainer}
+                    testID="button"
                 >
                     <Text style={styles.buttonText}>
                         Show Records
@@ -106,7 +123,7 @@ const Dashboard = (props) => {
 };
 
 function mapStateToProps(state) {
-    // console.log('mapStateToProps state =>', state)
+    console.log('mapStateToProps state =>', state)
     return {
         currentArtist: state.reducer.currentArtist,
         records: state.reducer.records,
